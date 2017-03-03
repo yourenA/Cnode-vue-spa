@@ -331,8 +331,8 @@
 						line-height: 2rem;
 					}
 					img {
-						width: 30px;
-						height: 30px;
+						width: 2rem;
+						height: 2rem;
 					}
 					.re-time {
 						color: #08c;

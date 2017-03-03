@@ -57,6 +57,7 @@
 						.then((response_count) => {
 							if (response_count.data.success) {
 								this.$store.dispatch('setNotMessageCount', response_count.data.data);
+								//返回登陆前的页面
 								window.history.back();
 							}
 						})
@@ -80,7 +81,7 @@
 		}
 	}
 </script>
-<style lang="sass">
+<style lang="sass" rel="stylesheet/scss">
 	.login-con {
 		margin: 20px 5px 0;
 		padding-top : 3.5rem;

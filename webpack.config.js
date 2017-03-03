@@ -2,7 +2,6 @@ var path = require('path');
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var vue = require("vue-loader");
 
 // 配置异步加载地址
 var project_publicPath = process.env.NODE_ENV === 'production' ? __dirname + '/build/' : '/build/';

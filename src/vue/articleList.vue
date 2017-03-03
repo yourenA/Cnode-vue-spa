@@ -11,13 +11,18 @@
 						<img :src="art.author.avatar_url" :alt="art.author.loginname">
 					</router-link>
 					<div class="art-inf">
-						<em :title="art.tab | getArticleTab(art.good, art.top)"
-							:class="art.good | getArticleClass(art.top)">
-							{{art.tab | getArticleTab(art.good, art.top)}}
-						</em>
-						<a class="title">{{art.title}}</a>
-						<span class="rp-count">{{art.reply_count}}/{{art.visit_count}}</span>
-						<span class="last-time">{{art.last_reply_at | getLastTime }}</span>
+						<div class="info-top">
+							<em :title="art.tab | getArticleTab(art.good, art.top)"
+								:class="art.good | getArticleClass(art.top)">
+								{{art.tab | getArticleTab(art.good, art.top)}}
+							</em>
+							<a class="title">{{art.title}}</a>
+						</div>
+						<div class="info-bottom">
+							<span class="rp-count">{{art.reply_count}}/{{art.visit_count}}</span>
+							<span class="last-time">{{art.last_reply_at | getLastTime }}</span>
+						</div>
+
 					</div>
 				</router-link>
 			</div>
@@ -30,6 +35,7 @@
 </template>
 <script>
 	import axios from 'axios';
+	//导入公共的组件
 	import nvHeader from '../components/header.vue';
 	import nvTop from '../components/returnTop.vue';
 	export default {
@@ -51,7 +57,7 @@
 					'limit' : 20, //每页加载20条
 					'tab' : 'all' //分页 有all ask share job good
 				}
-				
+
 			}
 		},
 		mounted : function() {
@@ -74,6 +80,7 @@
 					params : rqdata
 				})
 				.then((response) => {
+					console.log(response)
 					if (response.data.success) {
 						this.artlist = response.data['data'];
 						this.scroll = true;
@@ -99,6 +106,9 @@
 				}
 			}
 		},
+		/**
+		 * components向template传递组件
+		 * */
 		components : {
 			nvHeader,
 			nvTop
@@ -109,7 +119,7 @@
 		}
 	}
 </script>
-<style lang="sass">
+<style lang="sass"  rel="stylesheet/scss">
 	.artlist{
 		overflow: hidden;
 		margin: 0 5px;
@@ -139,71 +149,69 @@
 			width: 100%;
 			.artitem {
 				position: relative;
-				display: inline-block;
-				width: 100%;
-				/*height: 3rem;*/
+				display: flex;
 				padding: 10px;
+				height: 3rem;
 				background: #fff;
-				border: 1px solid #e1e1e1;
+				border-bottom: 1px solid #eee;
 				.avatar {
 					display: inline-block;
-					position: absolute;
-					left: 10px;
-					top: 10px;
-					width: 2rem;
-					height: 2rem;
-					z-index: 5;
+					width: 3rem;
+					height: 3rem;
 					img {
 						display: inline-block;
-						width: 100%;
-						height: 100%;
+						width:  3rem;
+						height:  3rem;
 					}
 				}
 				.art-inf {
-					position: relative;
-					width: 80%;
-					height: 100%;
-					padding-left: 2.5rem;
-					a {
-						display: inline-block;
-						overflow: hidden;
-						width: 80%;
-						height: 1.2rem;
-						color: #000;
-						font-size: 1rem;
-						line-height: 1.2rem;
-						white-space: nowrap;
-						text-overflow: ellipsis;
-					}
-					span, em {
-						display: inline-block;
-					}
-					em {
-						padding: 2px 4px;
-						background: #e5e5e5;
-						border-radius: 3px;
-					    -webkit-border-radius: 3px;
-					    -moz-border-radius: 3px;
-					    -o-border-radius: 3px;
-						color: #999;
-					    font-size: 0.8rem;
-					}
-					.put_good, .put_top {
-						background: #80bd01;
-					    color: #fff;
-					}
-					.rp-count {
-						margin-left:10%;
-						font-size: 12px;
-						padding: 2px 4px;
-					}
-					.last-time {
-						position: absolute;
-						right: 0px;
-						bottom: 0px;
-						font-size: 12px;
-						padding: 2px 4px;
-					}
+					padding-left: 0.5rem;
+					flex: 1;
+					width: 0;
+					height:3rem;
+                    .info-top{
+                        height: 1.5rem;
+                        line-height: 1.5rem;
+                        display: flex;
+                        em {
+                            width: auto;
+                            padding: 2px 4px;
+                            background: #e5e5e5;
+                            border-radius: 3px;
+                            color: #999;
+                            font-size: 0.8rem;
+                        }
+                        a {
+                            padding-left: 5px;
+                            flex: 1;
+                            width: 0;
+                            overflow: hidden;
+                            color: #000;
+                            font-size: 1rem;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                        }
+                        .put_good, .put_top {
+                            background: #80bd01;
+                            color: #fff;
+                        }
+
+                    }
+                    .info-bottom{
+                        height: 1.5rem;
+                        line-height: 1.5rem;
+                        display: flex;
+                        justify-content:space-between;
+                        vertical-align: bottom;
+                        font-size: 0.8rem;
+                        color: #444444;
+                        .rp-count {
+                        }
+                        .last-time {
+                        }
+
+                    }
+
 				}
 			}
 

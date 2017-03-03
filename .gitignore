@@ -11,14 +11,5 @@ gen
 node_modules
 
 #build
-dist/
-public/build/
+build
 
-#config
-platforms/common/config/*
-!platforms/common/config/default.js
-!platforms/common/config/index.js
-
-#test
-test/coverage/
-karma-*/

@@ -1,5 +1,7 @@
 <template>
+	<!--showMeun class的更新将取决于数据属性 showm 是否为真值 。-->
 	<div class="meun" :class="{'showMeun':showm}">
+		<!--loginStatus 来自computed-->
 		<div class="user_info" v-if="loginStatus" @click="gotoUserhome">
 			<div class="avatar">
 				<img :src="userInfo.avatar" alt="">
@@ -21,6 +23,7 @@
 <script>
 	export default {
 		props : ['showm'],
+		//mounted：el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子
 		mounted : function() {
 			if (localStorage.cnode_accesstoken) {
 				// 存在本地游accesstoken记录，自动登录
@@ -30,12 +33,19 @@
 					'id' : localStorage.cnode_id,
 					'accesstoken' : localStorage.cnode_accesstoken
 				}
+				/**
+				 * this.$store.dispatch 触发store中的actions
+				 */
 				this.$store.dispatch('isLogin');
 				this.$store.dispatch('setUserInfo', userInfo);
 			}
 		},
+		/*computed 中的 loginStatus，messageCount，userInfo在script中可以通过this.userInfo拿到*/
 		computed : {
 			loginStatus() {
+				/**
+				 * this.$store.getters 获取store中定义的方法
+				 */
 				return this.$store.getters.getLoginState;
 			},
 			messageCount() {
@@ -47,6 +57,10 @@
 		},
 		methods : {
 			gotoUserhome : function() {
+				/**
+				 * this.$router router实例
+				 * name: 'userhome' 找到routes中name为userhome的路由
+				 */
 				this.$router.push({ name: 'userhome', params: { username: this.userInfo.loginname }});
 			},
 			signOut : function() {
@@ -67,7 +81,7 @@
 		}
 	}
 </script>
-<style lang="sass">
+<style lang="sass"  rel="stylesheet/scss">
 	.meun {
 		position: fixed;
 		top: 0px;

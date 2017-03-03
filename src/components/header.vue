@@ -32,7 +32,7 @@
         }
 	}
 </script>
-<style lang="sass">
+<style lang="sass" rel="stylesheet/scss">
 	.page-cover {
 		position: fixed;
 		top: 0px;

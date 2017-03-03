@@ -1,5 +1,8 @@
+/**
+ * 闭包，在调用时立刻执行
+ * */
 (function() {
-	window.onresize = infinite;
+	window.onresize = infinite;//屏幕大小改变时执行
 	var html = document.documentElement;
 	function infinite() {
 		var htmlWidth = html.clientWidth;

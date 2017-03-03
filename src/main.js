@@ -11,7 +11,9 @@ require('./css/reset.css');
 require('./js/equ.js');
 
 // 遍历输出a过滤器的模块
+console.log(Object.keys(filters))
 Object.keys(filters).forEach(k => Vue.filter(k, filters[k]));
+console.log(store.state)
 
 new Vue({
     router,

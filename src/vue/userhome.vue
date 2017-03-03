@@ -107,7 +107,9 @@
 			$route : 'getUserHome'
 		},
 		mounted : function() {
-			this.getUserHome();	
+			this.getUserHome();
+			// 主题加载完成自动返回顶部
+			window.scroll(0, 0);
 		},
 		methods : {
 			// 用户参与主题
@@ -150,7 +152,7 @@
 		}
 	}
 </script>
-<style lang="sass">
+<style lang="sass"  rel="stylesheet/scss">
 	.userhome {
 		overflow: hidden;
     	margin: 0 5px;
@@ -205,18 +207,20 @@
 				font-size: 14px;
 			}
 			.userTopicsBox, .userRepliesBox, .userCollectBox {
-				margin-top: 5px;
-				padding-top: 10px;
 				background: #fff;
 				opacity: 0.8;
 				.topicsitem, .repliesitem, .collectitem {
-					position: relative;
-					padding: 10px;
-					background: #fff;
-					border-bottom: 1px solid #e1e1e1;
+
+					&>a{
+						color: #444444;
+						padding: 8px;
+						height: 2rem;
+						background: #fff;
+						border-bottom: 1px solid #e1e1e1;
+						display: flex;
+					}
 					.avatar {
-						display: block;
-						float: left;
+						display: inline-block;
 						width: 2rem;
 						height: 2rem;
 						img {
@@ -226,51 +230,26 @@
 						}
 					}
 					.art-inf {
-						position: relative;
-						float: left;
-						width: 80%;
 						height: 2rem;
-						margin-left: 15px;
-						a {
-							display: inline-block;
-							overflow: hidden;
-							width: 80%;
-							height: 2rem;
-							color: #000;
-							font-size: 1rem;
-							line-height: 2rem;
-							white-space: nowrap;
+						line-height: 2rem;
+						flex: 1;
+						width: 0;
+						display: flex;
+						a{
+							color: #444444;
+							padding: 0 5px;
+							flex: 1;
+							width: 0;
 							text-overflow: ellipsis;
+							white-space: nowrap;
+							overflow: hidden;
+
 						}
-						span {
+						span{
 							display: inline-block;
+							width: 4.5rem;
+							text-align: right;
 						}
-						.last-time {
-							position: absolute;
-							right: 0px;
-							bottom: 0px;
-							font-size: 12px;
-							padding: 2px 4px;
-						}
-					}
-				}
-				.nodata {
-					position: relative;
-					padding-top: 40px;
-					color: #A8B5C3;
-					font-size: 16px;
-					text-align: center;
-					line-height: 40px;
-					.nodataimg {
-						position: absolute;
-						width: 40px;
-						height: 40px;
-						left: 0px;
-						top: 0px;
-						right: 0px;
-						margin: auto;
-						background: url('../img/nodata.png') no-repeat;
-						background-size: 100%;
 					}
 				}
 			}

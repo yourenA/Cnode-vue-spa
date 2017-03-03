@@ -25,7 +25,7 @@
 
 	}
 </script>
-<style lang="sass">
+<style lang="sass" rel="stylesheet/scss">
 	.tips-cover {
 		    position: fixed;
 		    width: 100%;

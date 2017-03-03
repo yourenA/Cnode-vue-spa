@@ -4,6 +4,9 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
+	/**
+	* 设置全局state
+	* */
 	state: {
 		// 页面打开默认设置登录状态为否
 		isLogin : false,
@@ -79,6 +82,11 @@ const store = new Vuex.Store({
 			state.replies = replies;
 		}
 	},
+	/**
+	 * Vuex 允许我们在 store 中定义『getters』（可以认为是 store 的计算属性）。Getters 接受 state 作为其第一个参数
+	 * Getters 会暴露为 store.getters 对象：
+	 * Getters 也可以接受其他 getters 作为第二个参数：
+	 * */
 	getters: {
 		getLoginState (state) {
 			return state.isLogin;

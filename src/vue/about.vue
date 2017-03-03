@@ -24,7 +24,7 @@
 		}
 	}
 </script>
-<style lang="sass">
+<style lang="sass" rel="stylesheet/scss">
 	.about {
 		margin-top: 200px ;
 		width: 100%;
